@@ -13,12 +13,12 @@ public class Main {
     }
 
     public static void separateCharacters(String input) {
-        Character[] charObjectArray = input.chars().mapToObj(c -> (char)c).toArray(Character[]::new);
-        Arrays.stream(charObjectArray).forEach(character -> {
-            if (Character.isDigit(character)) {
-                numbers.add(Character.getNumericValue(character));
-            } else {
-                sign.add(Character.toString(character));
+        Arrays.stream(input.split(" ")).forEach(element -> {
+            try {
+                int number = Integer.parseInt(element);
+                numbers.add(number);
+            } catch(NumberFormatException err) {
+                sign.add(element);
             }
         });
     }
